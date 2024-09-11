@@ -1,0 +1,131 @@
+---
+title: "Técnicas Avanzadas de Estadística"
+author: "[Javier Cara](https://www.javiercara.com/)"
+date: "curso 2023-24"
+output: 
+  html_document:
+    number_sections: true
+    toc: false
+    toc_depth: 2
+  pdf_document:
+    toc: false
+---
+
+<br>
+
+***
+
+# Contenido
+
+## Regresión lineal
+
+1. Modelo de regresión lineal
+    a. [Modelo con un regresor](lm_modelo_1regresor.html) [(pdf)](lm_modelo_1regresor.pdf)
+    b. [Modelo con dos regresores](lm_modelo_2regresores.html) [(pdf)](lm_modelo_2regresores.pdf)
+    c. [Modelo con K regresores](lm_modelo_Kregresores.html) [(pdf)](lm_modelo_Kregresores.pdf)
+    d. [Estimación del modelo con la función lm](lm_modelo_lm.html) [(pdf)](lm_modelo_lm.pdf)
+    e. [Regresores cualitativos](lm_modelo_cualitativas.html) [(pdf)](lm_modelo_cualitativas.pdf)
+2. Inferencia en el modelo de regresión lineal
+    a. [Estimadores y su distribución](lm_inferencia_muestreo.html) [(pdf)](lm_inferencia_muestreo.pdf)
+    b. [Intervalos de confianza](lm_inferencia_intervalos.html) [(pdf)](lm_inferencia_intervalos.pdf)
+    c. [Contraste de hipótesis](lm_inferencia_contrastes.html) [(pdf)](lm_inferencia_contrastes.pdf)
+    d. [Bootstrap](lm_inferencia_bootstrap.html) [(pdf)](lm_inferencia_bootstrap.pdf)
+3. Aplicaciones del modelo de regresión lineal
+    a. [Cálculo de predicciones](lm_aplicaciones_prediccion.html) [(pdf)](lm_aplicaciones_prediccion.pdf)
+    b. [Análisis de las relaciones entre variables](lm_aplicaciones_explicacion.html) [(pdf)](lm_aplicaciones_explicacion.pdf)
+4. Bondad del ajuste
+    a. [Bondad del ajuste](lm_bondad_ajuste.html) [(pdf)](lm_bondad_ajuste.pdf)
+5. Diagnosis
+    a. [Análisis de los residuos del modelo](lm_diagnosis.html) [(pdf)](lm_diagnosis.pdf)
+6. Extensiones del modelo lineal
+    a. [Regresores polinómicos](lm_extensiones_polinomios.html) [(pdf)](lm_extensiones_polinomios.pdf)
+7. Ejemplo
+    a. [Ejemplo completo de regresión lineal](lm_ejemplo1.html) [(pdf)](lm_ejemplo1.pdf)
+8. Validación cruzada
+    a. [Validación cruzada](lm_validacion_cruzada.html) [(pdf)](lm_validacion_cruzada.pdf)
+9. Comparación de modelos y selección de variables
+    a. [Comparación de modelos y selección de variables](lm_seleccion_variables.html) [(pdf)](lm_seleccion_variables.pdf)    
+10. Apéndices
+    a. [Derivada de un escalar respecto de un vector](lm_apendice_derivadas.html) [(pdf)](lm_apendice_derivadas.pdf)
+    b. [Matriz de covarianzas](lm_apendice_covarianzas.html) [(pdf)](lm_apendice_covarianzas.pdf)
+    c. [Variable aleatoria normal](lm_apendice_normal.html) [(pdf)](lm_apendice_normal.pdf)
+    d. [Introducción a la simulación de variables aleatorias](lm_apendice_simulacion.html) [(pdf)](lm_apendice_simulacion.pdf)
+    
+## Modelos lineales generalizados
+
+### Regresión logística
+
+1. Modelo de regresión logística
+    a. [Modelo con un regresor](logit_modelo_1regresor.html) [(pdf)](logit_modelo_1regresor.pdf)
+    b. [Modelo con K regresores](logit_modelo_Kregresores.html) [(pdf)](logit_modelo_Kregresores.pdf)
+    c. [Regresores cualitativos](logit_modelo_cualitativas.html) [(pdf)](logit_modelo_cualitativas.pdf)
+2. Inferencia en el modelo de regresión logística
+    a. [Estimadores y su distribución. Inferencia](logit_inferencia.html) [(pdf)](logit_inferencia.pdf)
+    b. [Bootstrap](logit_inferencia_bootstrap.html) [(pdf)](logit_inferencia_bootstrap.pdf)
+3. Aplicaciones del modelo de regresión logística
+    a. [Cálculo de predicciones](logit_aplicaciones_prediccion.html) [(pdf)](logit_aplicaciones_prediccion.pdf)
+    b. [Análisis de las relaciones entre variables](logit_aplicaciones_explicacion.html) [(pdf)](logit_aplicaciones_explicacion.pdf)
+4. Bondad de ajuste
+    a. [Bondad del ajuste](logit_bondadajuste.html)[(pdf)](logit_bondadajuste.pdf)
+5. Residuos
+    a. [Análisis de los residuos del modelo](logit_diagnosis.html) [(pdf)](logit_diagnosis.pdf)
+6. Apéndices
+    a. [Regresión logística binomial](logit_modelo_binomial.html) [(pdf)](logit_modelo_binomial.pdf)
+
+### Regresión logística multinomial
+
+### Regresión de Poisson
+1. Modelo de regresión logística
+    a. [Modelo](poisson_modelo.html) [(pdf)](poisson_modelo.pdf)
+2. Inferencia en el modelo de regresión logística
+    a. [Estimadores y su distribución. Inferencia](poisson_inferencia.html) [(pdf)](poisson_inferencia.pdf)
+3. Aplicaciones del modelo de regresión de Poisson
+    a. [Cálculo de predicciones](poisson_aplicaciones_prediccion.html) [(pdf)](poisson_aplicaciones_prediccion.pdf)
+4. Bondad de ajuste
+    a. [Bondad del ajuste](poisson_bondadajuste.html) [(pdf)](poisson_bondadajuste.pdf) 
+
+## Algoritmos
+
+### Árboles de clasificación y de regresión
+
+1. Árboles de regresión
+    a. [Arbol con un regresor](tree_regresion_1regresor.html) [(pdf)](tree_regresion_1regresor.pdf)
+    b. [Arbol con K regresores](tree_regresion_Kregresores.html) [(pdf)](tree_regresion_Kregresores.pdf)
+2. Random Forest   
+    a. [Random Forest](tree_RandomForest.html) [(pdf)](tree_RandomForest.pdf)
+3. Árboles de clasificación
+    a. [Árboles de clasificación](tree_clasificacion.html) [(pdf)](tree_clasificacion.pdf) 
+    
+### K - Nearest Neighbours
+1. [KNN para clasificiación](knn_clasificiacion.html) [(pdf)](knn_clasificacion.pdf) 
+2. [KNN para regresión](knn_regresion.html) [(pdf)](knn_regresion.pdf) 
+
+# Bibliografía
+
+Los libros utilizados en la redacción de estos apuntes han sido, fundamentalmente:
+
+- **[Faraway2014]** Linear models with R. Julian J. Faraway. Chapman and Hall/CRC. Edicion 2, 2014.
+- **[Gelman2007]** Data Analysis Using Regression and Multilevel/Hierarchical Models. Andrew Gelman, Jennifer Hill. Cambridge University Press. 2007.
+- **[James2017]** An Introduction to Statistical Learning: with Applications in R. Gareth James, Daniela Witten, Trevor Hastie and Rob Tibshirani. Springer, 2017.
+- **[Montgomery2013]** Introduction to Linear Regression Analysis. Douglas Montgomery, Elisabeth Peck, Geofrey Vining . Editorial Wiley-Blackwell, Edicion 5, 2013.
+- **[Peña2010]** Regresión y diseño de experimentos. Daniel Peña. Alianza Editorial, 2010.
+- **[Sheather2009]** A modern approach to regression with R. Simon J. Sheather. Springer tests in Statistics, 2009.
+
+# Archivos de datos
+
+- [Advertising.csv](datos/Advertising.csv). Mas información en [James2017].
+- [cerezos.txt](datos/cerezos.txt)
+- [coches.txt](datos/coches.txt)
+- [kidiq.csv](datos/kidiq.csv). Mas información en [Gelman2007].
+- [Hitters.csv](datos/Hitters.csv). Mas información en [James2017].
+- [Wage.csv](datos/Wage.csv). Mas información en [James2017].
+
+# Funciones
+
+- [cross_val_pos()](funciones/cross_val_pos.R).
+- [MSE()](funciones/MSE.R)
+- [predict.regsubsets()](funciones/regsubsets_predict.R).
+
+
+
+<br>
