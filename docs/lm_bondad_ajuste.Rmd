@@ -1,0 +1,148 @@
+---
+title: "Bondad del ajuste en el modelo de regresión lineal"
+output: 
+  html_document:
+    number_sections: true
+    toc: true
+    toc_float: true
+  pdf_document:
+    number_sections: true
+    toc: true
+---
+
+
+
+Estamos interesados en evaluar como de bueno es el modelo que se ha estimado. La calidad del modelo se puede calcular utilizando diferentes métricas:
+
+# Coeficiente de determinacion $R^2$
+
+Dado unos datos $(x_{1i}, \ldots, x_{ki}, y_i), \ i = 1,\ldots,n$, se estima el modelo de regresión lineal
+
+$$
+y_i = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_k x_{ki} + u_i
+$$
+
+obteniendo
+
+$$
+y_i = \hat \beta_0 + \hat \beta_1 x_{1i} + \cdots + \hat \beta_k x_{ki} + e_i
+$$
+
+Es usual definir
+
+$$
+\hat y_i = \hat \beta_0 + \hat \beta_1 x_{1i} + \cdots + \hat \beta_k x_{ki}
+$$
+
+por lo que
+
+$$
+y_i = \hat y_i + e_i
+$$
+
+Ya hemos visto que a partir de esta expresión se obtiene:
+
+$$
+\sum_{i=1}^n (y_i - \bar{y})^2 = \sum_{i=1}^n (\hat y_i - \bar{y})^2 + \sum_{i=1}^n e_i^2
+$$
+
+$$
+SST = SSM + SSR
+$$
+
+donde:
+
+- SST: suma de cuadrados total
+- SSM: suma de cuadrados correspondientes al modelo.
+- SSR: suma de cuadrados correspondientes a los residuos.
+
+Es decir, dividimos la suma de cuadrados total entre modelo y residuos. Por tanto es lógico definir un coeficiente dividiendo *SSM* entre *SST*, es decir, calcular el porcentaje de la suma de cuadrados que corresponde al modelo. Dicho coeficiente se llama **coeficiente de determinación**:
+
+$$
+R^2 = \frac{SSM}{SST} = 1 - \frac{SSE}{SST}
+$$
+
+Este coeficiente toma valores entre 0 y 1:
+
+- Si el modelo es bueno, la suma de cuadrados del modelo será grande, $R^2 \approx 1$.
+- Si el modelo es malo, los suma de cuadrados del modelo será pequeña, $R^2 \approx 0$.
+
+# Coeficiente de determinacion ajustado $R_a^2$
+
+El coeficiente de determinación se ha definido como
+
+$$
+R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{(n-k-1) \hat s_R^2}{(n-1)\hat s_y^2}
+$$
+
+Imaginemos que $\beta_k = 0$, es decir, que el regresor $x_k$ no aporta información al modelo. Entonces podríamos estimar el modelo:
+
+$$
+y_i = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_{k-1} x_{(k-1)i} + u_i
+$$
+
+con $R_1^2$. En principio se debería cumplir que $R^2 = R_1^2$. Sin embargo, 
+
+$$
+(n-(k-1)-1) > (n-k-1)
+$$
+$$
+(n-k) \hat s_R^2 > (n-k-1) \hat s_R^2
+$$
+
+$$
+\frac{(n-k) \hat s_R^2}{(n-1)\hat s_y^2} > \frac{(n-k-1) \hat s_R^2}{(n-1)\hat s_y^2}
+$$
+
+$$
+ - \frac{(n-k) \hat s_R^2}{(n-1)\hat s_y^2} < - \frac{(n-k-1) \hat s_R^2}{(n-1)\hat s_y^2}
+$$
+
+$$
+1 - \frac{(n-k) \hat s_R^2}{(n-1)\hat s_y^2} < 1 - \frac{(n-k-1) \hat s_R^2}{(n-1)\hat s_y^2}
+$$
+
+
+$$
+R_1^2 <  R^2
+$$
+
+Por tanto, el coeficiente de determinación disminuye al aumentar el número de regresores *k*, aunque esos regresores no aporten información al modelo. Por este motivo se define el coeficiente de determinación ajustado:
+
+$$
+R_a^2 = 1 - \frac{\hat s_R^2}{\hat s_y^2} = 1 - \frac{SSR/(n-k-1)}{SST/(n-1)} = 1 - \frac{SSR}{SST} \frac{(n-1)}{(n-k-1)}
+$$
+
+Cuando comparamos modelos con diferente número de regresores es preferible utilizar $R^2_a$.
+
+# Ejemplo 
+
+```{r}
+d = read.csv("datos/kidiq.csv")
+d$mom_hs = factor(d$mom_hs, labels = c("no", "si"))
+d$mom_work = factor(d$mom_work, labels = c("notrabaja", "trabaja23", "trabaja1_parcial", "trabaja1_completo"))
+```
+
+```{r}
+m1 = lm(kid_score ~ mom_iq + mom_age + mom_hs + mom_work, data = d)
+summary(m1)
+```
+
+```{r}
+m2 = lm(kid_score ~ mom_iq + mom_age + mom_hs, data = d)
+summary(m2)
+```
+
+Se tiene que $R_{a1}^2 = 0.2103$, $R_{a2}^2 = 0.2095$. Por tanto no hay mucha diferencia entre los modelos a pesar de que el modelo m1 utiliza más regresores. Esto seguramente se debe al hecho de que la variable *mom_work* no es significativa. Para comprobarlo utilizamos el contraste
+
+- $H_0$ : Los modelos m1 y m2 son equivalentes.
+- $H_1$ : Los modelos m1 y m2 NO son equivalentes.
+
+```{r}
+anova(m1,m2)
+```
+
+ El p-valor > 0.05, no se rechaza la hipótesis nula, los modelos son equivalentes, la variable *mom_work* no es significativa.
+
+
+
