@@ -214,27 +214,32 @@ ya que $\sum (\hat y_i - \bar y) e_i = 0$. Se denominan:
 
 - Suma de cuadrados total: 
 
-$$SST = \sum (y_i - \bar y)^2$$
+$$SCT = \sum (y_i - \bar y)^2$$
 
-- Suma de cuadrados estimados por el modelo: 
+- Suma de cuadrados del modelo: 
 
-$$SSM = \sum (\hat y_i - \bar y)^2$$
+$$SCM = \sum (\hat y_i - \bar y)^2$$
 
 - Suma de cuadrados de los residuos: 
 
-$$SSR = \sum e_i^2$$
+$$SCR = \sum e_i^2$$
+
+Por tanto, se cumple que 
+
+$$SCT = SCM + SCR$$
+
 
 ## Expresiones alternativas para la suma de cuadrados
 
 - Suma de cuadrados total: 
 
-$$SST = (n-1)\hat s_y^2$$
+$$SCT = (n-1)\hat s_y^2$$
 
 ya que la varianza $\hat{s}_y^2 = \frac{1}{n-1} \sum (y_i - \bar y)^2$.
 
 - Suma de cuadrados estimados por el modelo: 
 
-$$SSM = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xy}$$
+$$SCM = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xy}$$
 
 Para probar esa relación se tiene que:
 
@@ -263,16 +268,16 @@ $$
 Es decir
 
 $$
-\hat y_a = X_a \hat \beta_a
+y - \bar{y} = X_a \hat \beta_a
 $$
 
 $$
-SSM = \sum (\hat y_i - \bar y)^2 = \hat{y}_a^T \hat{y}_a = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a
+SCM = \sum (\hat y_i - \bar y)^2 = (y - \bar{y})^T (y - \bar{y}) = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xx} S_{xx}^{-1} S_{xy} = (n-1) \hat \beta_a^T S_{xy}
 $$
 
 - Suma de cuadrados de los residuos: 
 
-$$SSR = (n-k-1)\hat s_R^2$$
+$$SCR = (n-k-1)\hat s_R^2$$
 
 ya que la varianza resiudal es $\hat{s}_R^2 = \frac{\sum e_i^2}{n-k-1}$.
 
@@ -287,14 +292,14 @@ $$
 
 Para resolver este contraste, se puede demostrar que:
 
-- Si $\beta_1 = \beta_2 = \cdots = \beta_k = 0 \Rightarrow SSM/\sigma^2 \sim \chi^2_k$
-- $SSR/\sigma^2 \sim \chi^2_{n-k-1}$
-- SSM y SSR son independientes.
+- Si $\beta_1 = \beta_2 = \cdots = \beta_k = 0 \Rightarrow SCM/\sigma^2 \sim \chi^2_k$
+- $SCR/\sigma^2 \sim \chi^2_{n-k-1}$
+- SCM y SCR son independientes.
 
 Por lo tanto es razonable utilizar el estadístico:
 
 $$
-\frac{\frac{SSM/\sigma^2}{k}}{\frac{SSR/\sigma^2}{n-k-1}} \sim F_{k, n-k-1} \Rightarrow F_0 = \frac{SSM/k}{SSR/(n-k-1)} \sim F_{k, n-k-1}
+\frac{\frac{SCM/\sigma^2}{k}}{\frac{SCR/\sigma^2}{n-k-1}} \sim F_{k, n-k-1} \Rightarrow F_0 = \frac{SCM/k}{SCR/(n-k-1)} \sim F_{k, n-k-1}
 $$
 
 Se rechazará la hipótesis nula para valores grandes del estadístico:
@@ -307,10 +312,10 @@ Se rechazará la hipótesis nula para valores grandes del estadístico:
 Queremos contrastar si $\beta_{mom\_age} = \beta_{mom\_hs} = \beta_{mom\_iq}= 0$ en el modelo *kid_score ~ mom_hs + mom_iq + mom_age*, es decir, si estos regresores influyen en la puntuación obtenida en el test.
 
 ```{r}
-(SST = sum((d$kid_score - mean(d$kid_score))^2) )
-(SSR = sum(resid(m1)^2))
-(SSM = SST - SSR)
-(F_0 = SSM/k/(SSR/(n-k-1)))
+(SCT = sum((d$kid_score - mean(d$kid_score))^2) )
+(SCR = sum(resid(m1)^2))
+(SCM = SCT - SCR)
+(F_0 = SCM/k/(SCR/(n-k-1)))
 (F_alfa = qf(0.05, df1 = k, df2 =n-5-1))
 # pvalor
 1 - pf(F_0, k, n-k-1)
@@ -332,16 +337,16 @@ $$
 y = X \beta + u, \ dim(\beta) = k \times 1 
 $$
 
-Y consideremos otro modelo de regresión en el que se utilizan *m* de los *k* regresores:
+Y consideremos otro modelo de regresión en el que se utilizan *m* de los *k* regresores, luego $m < k$:
 
 $$
 y = X' \beta' + u', \ dim(\beta') = m \times 1 
 $$
 
-Sea *SSR(k)* la suma de cuadrados residual del primer modelo, y *SSR(m)* la suma de cuadrados residual del segundo modelo. Se puede demostrar que:
+Sea *SCR(k)* la suma de cuadrados residual del primer modelo, y *SCR(m)* la suma de cuadrados residual del segundo modelo. Se puede demostrar que:
 
 $$
-F_0 = \frac{(SSR(m)-SSR(k))/(k-m)}{SSR(k)/(n-k-1)} \sim F_{k-m, n-k-1}
+F_0 = \frac{(SCR(m)-SCR(k))/(k-m)}{SCR(k)/(n-k-1)} \sim F_{k-m, n-k-1}
 $$
 
 Con este estadístico podemos resolver el contraste 
@@ -363,9 +368,9 @@ Vamos a analizar si el regresor *mom_age* puede eliminarse de la lista. El contr
 
 ```{r}
 m2 = lm(kid_score ~ mom_hs + mom_iq, data = d)
-(SSR2 = sum(resid(m2)^2))
+(SCR2 = sum(resid(m2)^2))
 m = 2
-(F_0 = ((SSR2 - SSR)/(k-m))/(SSR/(n-k-1)))
+(F_0 = ((SCR2 - SCR)/(k-m))/(SCR/(n-k-1)))
 # F_alfa
 qf(0.95, k-m, n-k-1)
 # pvalor
@@ -400,9 +405,9 @@ El contraste que resolvemos es $H_0 : \beta_{mom\_iq} = \beta_{mom\_age} = 0$ en
 
 ```{r}
 m4 = lm(kid_score ~ mom_hs, data = d)
-(SSR4 = sum(resid(m4)^2))
+(SCR4 = sum(resid(m4)^2))
 m = 1
-(F_0 = ((SSR4 - SSR)/(k-m))/(SSR/(n-k-1)))
+(F_0 = ((SCR4 - SCR)/(k-m))/(SCR/(n-k-1)))
 # F_alfa
 qf(0.05, k-m, n-k-1)
 # pvalor
@@ -423,9 +428,9 @@ El contraste que resolvemos es $H_0 : \beta_{mom\_iq} = \beta_{mom\_age}$ en el 
 
 ```{r}
 m5 = lm(kid_score ~ mom_hs + I(mom_iq + mom_age), data = d)
-(SSR5 = sum(resid(m5)^2))
+(SCR5 = sum(resid(m5)^2))
 m = 2
-(F_0 = ((SSR5 - SSR)/(k-m))/(SSR/(n-k-1)))
+(F_0 = ((SCR5 - SCR)/(k-m))/(SCR/(n-k-1)))
 # pvalor
 1-pf(F_0, k-m, n-k-1)
 ```

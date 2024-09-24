@@ -448,27 +448,29 @@ y_i - \bar y = \hat y_i - \bar y + e_i
 <ul>
 <li>Suma de cuadrados total:</li>
 </ul>
-<p><span class="math display">\[SST = \sum (y_i - \bar y)^2\]</span></p>
+<p><span class="math display">\[SCT = \sum (y_i - \bar y)^2\]</span></p>
 <ul>
-<li>Suma de cuadrados estimados por el modelo:</li>
+<li>Suma de cuadrados del modelo:</li>
 </ul>
-<p><span class="math display">\[SSM = \sum (\hat y_i - \bar y)^2\]</span></p>
+<p><span class="math display">\[SCM = \sum (\hat y_i - \bar y)^2\]</span></p>
 <ul>
 <li>Suma de cuadrados de los residuos:</li>
 </ul>
-<p><span class="math display">\[SSR = \sum e_i^2\]</span></p>
+<p><span class="math display">\[SCR = \sum e_i^2\]</span></p>
+<p>Por tanto, se cumple que</p>
+<p><span class="math display">\[SCT = SCM + SCR\]</span></p>
 </div>
 <div id="expresiones-alternativas-para-la-suma-de-cuadrados" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Expresiones alternativas para la suma de cuadrados</h2>
 <ul>
 <li>Suma de cuadrados total:</li>
 </ul>
-<p><span class="math display">\[SST = (n-1)\hat s_y^2\]</span></p>
+<p><span class="math display">\[SCT = (n-1)\hat s_y^2\]</span></p>
 <p>ya que la varianza <span class="math inline">\(\hat{s}_y^2 = \frac{1}{n-1} \sum (y_i - \bar y)^2\)</span>.</p>
 <ul>
 <li>Suma de cuadrados estimados por el modelo:</li>
 </ul>
-<p><span class="math display">\[SSM = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xy}\]</span></p>
+<p><span class="math display">\[SCM = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xy}\]</span></p>
 <p>Para probar esa relación se tiene que:</p>
 <p><span class="math display">\[
 \hat{y}_i - \bar{y} = \hat \beta_1 (x_{1i} - \bar{x}_1) + \cdots + \hat \beta_k (x_{ki} - \bar{x}_k)
@@ -491,15 +493,15 @@ x_{1n} - \bar x_{1} &amp; x_{2n} - \bar x_{2} &amp; \cdots  &amp; x_{kn} - \bar 
 \]</span></p>
 <p>Es decir</p>
 <p><span class="math display">\[
-\hat y_a = X_a \hat \beta_a
+y - \bar{y} = X_a \hat \beta_a
 \]</span></p>
 <p><span class="math display">\[
-SSM = \sum (\hat y_i - \bar y)^2 = \hat{y}_a^T \hat{y}_a = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a
+SCM = \sum (\hat y_i - \bar y)^2 = (y - \bar{y})^T (y - \bar{y}) = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xx} S_{xx}^{-1} S_{xy} = (n-1) \hat \beta_a^T S_{xy}
 \]</span></p>
 <ul>
 <li>Suma de cuadrados de los residuos:</li>
 </ul>
-<p><span class="math display">\[SSR = (n-k-1)\hat s_R^2\]</span></p>
+<p><span class="math display">\[SCR = (n-k-1)\hat s_R^2\]</span></p>
 <p>ya que la varianza resiudal es <span class="math inline">\(\hat{s}_R^2 = \frac{\sum e_i^2}{n-k-1}\)</span>.</p>
 </div>
 <div id="contraste" class="section level2" number="4.4">
@@ -511,13 +513,13 @@ H_1 : \text{Algún } \beta_i \neq 0
 \]</span></p>
 <p>Para resolver este contraste, se puede demostrar que:</p>
 <ul>
-<li>Si <span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_k = 0 \Rightarrow SSM/\sigma^2 \sim \chi^2_k\)</span></li>
-<li><span class="math inline">\(SSR/\sigma^2 \sim \chi^2_{n-k-1}\)</span></li>
-<li>SSM y SSR son independientes.</li>
+<li>Si <span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_k = 0 \Rightarrow SCM/\sigma^2 \sim \chi^2_k\)</span></li>
+<li><span class="math inline">\(SCR/\sigma^2 \sim \chi^2_{n-k-1}\)</span></li>
+<li>SCM y SCR son independientes.</li>
 </ul>
 <p>Por lo tanto es razonable utilizar el estadístico:</p>
 <p><span class="math display">\[
-\frac{\frac{SSM/\sigma^2}{k}}{\frac{SSR/\sigma^2}{n-k-1}} \sim F_{k, n-k-1} \Rightarrow F_0 = \frac{SSM/k}{SSR/(n-k-1)} \sim F_{k, n-k-1}
+\frac{\frac{SCM/\sigma^2}{k}}{\frac{SCR/\sigma^2}{n-k-1}} \sim F_{k, n-k-1} \Rightarrow F_0 = \frac{SCM/k}{SCR/(n-k-1)} \sim F_{k, n-k-1}
 \]</span></p>
 <p>Se rechazará la hipótesis nula para valores grandes del estadístico:</p>
 <ul>
@@ -528,13 +530,13 @@ H_1 : \text{Algún } \beta_i \neq 0
 <div id="ejemplo-1" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Ejemplo</h2>
 <p>Queremos contrastar si <span class="math inline">\(\beta_{mom\_age} = \beta_{mom\_hs} = \beta_{mom\_iq}= 0\)</span> en el modelo <em>kid_score ~ mom_hs + mom_iq + mom_age</em>, es decir, si estos regresores influyen en la puntuación obtenida en el test.</p>
-<pre class="r"><code>(SST = sum((d$kid_score - mean(d$kid_score))^2) )</code></pre>
+<pre class="r"><code>(SCT = sum((d$kid_score - mean(d$kid_score))^2) )</code></pre>
 <pre><code>## [1] 180386.2</code></pre>
-<pre class="r"><code>(SSR = sum(resid(m1)^2))</code></pre>
+<pre class="r"><code>(SCR = sum(resid(m1)^2))</code></pre>
 <pre><code>## [1] 141605</code></pre>
-<pre class="r"><code>(SSM = SST - SSR)</code></pre>
+<pre class="r"><code>(SCM = SCT - SCR)</code></pre>
 <pre><code>## [1] 38781.13</code></pre>
-<pre class="r"><code>(F_0 = SSM/k/(SSR/(n-k-1)))</code></pre>
+<pre class="r"><code>(F_0 = SCM/k/(SCR/(n-k-1)))</code></pre>
 <pre><code>## [1] 39.25446</code></pre>
 <pre class="r"><code>(F_alfa = qf(0.05, df1 = k, df2 =n-5-1))</code></pre>
 <pre><code>## [1] 0.1171935</code></pre>
@@ -574,13 +576,13 @@ H_1 : \text{Algún } \beta_i \neq 0
 <p><span class="math display">\[
 y = X \beta + u, \ dim(\beta) = k \times 1 
 \]</span></p>
-<p>Y consideremos otro modelo de regresión en el que se utilizan <em>m</em> de los <em>k</em> regresores:</p>
+<p>Y consideremos otro modelo de regresión en el que se utilizan <em>m</em> de los <em>k</em> regresores, luego <span class="math inline">\(m &lt; k\)</span>:</p>
 <p><span class="math display">\[
 y = X&#39; \beta&#39; + u&#39;, \ dim(\beta&#39;) = m \times 1 
 \]</span></p>
-<p>Sea <em>SSR(k)</em> la suma de cuadrados residual del primer modelo, y <em>SSR(m)</em> la suma de cuadrados residual del segundo modelo. Se puede demostrar que:</p>
+<p>Sea <em>SCR(k)</em> la suma de cuadrados residual del primer modelo, y <em>SCR(m)</em> la suma de cuadrados residual del segundo modelo. Se puede demostrar que:</p>
 <p><span class="math display">\[
-F_0 = \frac{(SSR(m)-SSR(k))/(k-m)}{SSR(k)/(n-k-1)} \sim F_{k-m, n-k-1}
+F_0 = \frac{(SCR(m)-SCR(k))/(k-m)}{SCR(k)/(n-k-1)} \sim F_{k-m, n-k-1}
 \]</span></p>
 <p>Con este estadístico podemos resolver el contraste</p>
 <p><span class="math display">\[
@@ -596,10 +598,10 @@ H_1 : \text{Los modelos NO son iguales}
 <h2><span class="header-section-number">5.1</span> Ejemplo: contraste para un regresor</h2>
 <p>Vamos a analizar si el regresor <em>mom_age</em> puede eliminarse de la lista. El contraste que resolvemos es <span class="math inline">\(H_0 : \beta_{mom\_age} = 0\)</span> en el modelo <em>kid_score ~ mom_hs + mom_iq + mom_age</em>. Para ello lo comparamos con el modelo <em>kid_score ~ mom_hs + mom_iq</em>. Si los modelos son equivalentes quiere decir que <span class="math inline">\(\beta_{mom\_age} = 0\)</span>:</p>
 <pre class="r"><code>m2 = lm(kid_score ~ mom_hs + mom_iq, data = d)
-(SSR2 = sum(resid(m2)^2))</code></pre>
+(SCR2 = sum(resid(m2)^2))</code></pre>
 <pre><code>## [1] 141757.1</code></pre>
 <pre class="r"><code>m = 2
-(F_0 = ((SSR2 - SSR)/(k-m))/(SSR/(n-k-1)))</code></pre>
+(F_0 = ((SCR2 - SCR)/(k-m))/(SCR/(n-k-1)))</code></pre>
 <pre><code>## [1] 0.4617577</code></pre>
 <pre class="r"><code># F_alfa
 qf(0.95, k-m, n-k-1)</code></pre>
@@ -640,10 +642,10 @@ qf(0.95, k-m, n-k-1)</code></pre>
 <h2><span class="header-section-number">5.3</span> Ejemplo: contraste sobre una pareja de regresores</h2>
 <p>El contraste que resolvemos es <span class="math inline">\(H_0 : \beta_{mom\_iq} = \beta_{mom\_age} = 0\)</span> en el modelo <em>kid_score ~ mom_hs + mom_iq + mom_age</em>. Para ello lo comparamos con el modelo:</p>
 <pre class="r"><code>m4 = lm(kid_score ~ mom_hs, data = d)
-(SSR4 = sum(resid(m4)^2))</code></pre>
+(SCR4 = sum(resid(m4)^2))</code></pre>
 <pre><code>## [1] 170261.2</code></pre>
 <pre class="r"><code>m = 1
-(F_0 = ((SSR4 - SSR)/(k-m))/(SSR/(n-k-1)))</code></pre>
+(F_0 = ((SCR4 - SCR)/(k-m))/(SCR/(n-k-1)))</code></pre>
 <pre><code>## [1] 43.50887</code></pre>
 <pre class="r"><code># F_alfa
 qf(0.05, k-m, n-k-1)</code></pre>
@@ -670,10 +672,10 @@ qf(0.05, k-m, n-k-1)</code></pre>
 <h2><span class="header-section-number">5.4</span> Ejemplo: contraste de igualdad de regresores</h2>
 <p>El contraste que resolvemos es <span class="math inline">\(H_0 : \beta_{mom\_iq} = \beta_{mom\_age}\)</span> en el modelo <em>kid_score ~ mom_hs + mom_iq + mom_age</em>. Hacemos la comparación con el modelo:</p>
 <pre class="r"><code>m5 = lm(kid_score ~ mom_hs + I(mom_iq + mom_age), data = d)
-(SSR5 = sum(resid(m5)^2))</code></pre>
+(SCR5 = sum(resid(m5)^2))</code></pre>
 <pre><code>## [1] 141933.5</code></pre>
 <pre class="r"><code>m = 2
-(F_0 = ((SSR5 - SSR)/(k-m))/(SSR/(n-k-1)))</code></pre>
+(F_0 = ((SCR5 - SCR)/(k-m))/(SCR/(n-k-1)))</code></pre>
 <pre><code>## [1] 0.9974542</code></pre>
 <pre class="r"><code># pvalor
 1-pf(F_0, k-m, n-k-1)</code></pre>
