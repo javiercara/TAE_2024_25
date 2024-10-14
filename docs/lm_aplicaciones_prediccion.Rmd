@@ -106,7 +106,7 @@ $$
 donde $\tilde{x}_p^T = [\ x_{1p} \ x_{2p} \ \cdots \ x_{kp}]$. Por otro lado hemos visto que
 
 $$
-\bar y = \beta_0 + \beta_1 \bar x_{1} + \beta_2 \bar x_{2} + \cdots + \beta_k \bar x_{k} = \hat \beta_0 + \bar x^T \hat \beta_a
+\bar y = \hat \beta_0 + \hat \beta_1 \bar x_{1} + \hat \beta_2 \bar x_{2} + \cdots + \hat \beta_k \bar x_{k} = \hat \beta_0 + \bar x^T \hat \beta_a
 $$
 
 donde $\bar x^T = [\bar x_{1} \ \bar x_{2} \ \cdots \ \bar x_{k}]$. Despejando $\hat \beta_0$ y sustituyendo en la otra ecuación se obtiene

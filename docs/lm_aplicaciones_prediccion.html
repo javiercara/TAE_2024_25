@@ -320,7 +320,7 @@ x_{1p} &amp; x_{2p} &amp; \cdots &amp; x_{kp}
 \]</span></p>
 <p>donde <span class="math inline">\(\tilde{x}_p^T = [\ x_{1p} \ x_{2p} \ \cdots \ x_{kp}]\)</span>. Por otro lado hemos visto que</p>
 <p><span class="math display">\[
-\bar y = \beta_0 + \beta_1 \bar x_{1} + \beta_2 \bar x_{2} + \cdots + \beta_k \bar x_{k} = \hat \beta_0 + \bar x^T \hat \beta_a
+\bar y = \hat \beta_0 + \hat \beta_1 \bar x_{1} + \hat \beta_2 \bar x_{2} + \cdots + \hat \beta_k \bar x_{k} = \hat \beta_0 + \bar x^T \hat \beta_a
 \]</span></p>
 <p>donde <span class="math inline">\(\bar x^T = [\bar x_{1} \ \bar x_{2} \ \cdots \ \bar x_{k}]\)</span>. Despejando <span class="math inline">\(\hat \beta_0\)</span> y sustituyendo en la otra ecuación se obtiene</p>
 <p><span class="math display">\[
@@ -568,7 +568,7 @@ for (b in 1:B){
 <p>El intervalo de confianza para el valor medio es:</p>
 <pre class="r"><code>quantile(yp_medio_b, probs = c(0.025, 0.975))</code></pre>
 <pre><code>##      2.5%     97.5% 
-##  96.42923 109.79265</code></pre>
+##  96.04916 109.17944</code></pre>
 </div>
 <div id="intervalo-de-predicción-1" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Intervalo de predicción</h2>

@@ -51,7 +51,7 @@ output:
     c. [Variable aleatoria normal](lm_apendice_normal.html) [(pdf)](lm_apendice_normal.pdf)
     d. [Introducción a la simulación de variables aleatorias](lm_apendice_simulacion.html) [(pdf)](lm_apendice_simulacion.pdf)
     
-## Modelos lineales generalizados
+## Otros modelos de regresión
 
 ### Regresión logística
 
@@ -71,8 +71,6 @@ output:
     a. [Análisis de los residuos del modelo](logit_diagnosis.html) [(pdf)](logit_diagnosis.pdf)
 6. Apéndices
     a. [Regresión logística binomial](logit_modelo_binomial.html) [(pdf)](logit_modelo_binomial.pdf)
-
-### Regresión logística multinomial
 
 ### Regresión de Poisson
 1. Modelo de regresión logística

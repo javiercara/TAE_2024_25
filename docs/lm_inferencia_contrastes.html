@@ -493,10 +493,13 @@ x_{1n} - \bar x_{1} &amp; x_{2n} - \bar x_{2} &amp; \cdots  &amp; x_{kn} - \bar 
 \]</span></p>
 <p>Es decir</p>
 <p><span class="math display">\[
-y - \bar{y} = X_a \hat \beta_a
+\hat{y} - \bar{y} = X_a \hat \beta_a
 \]</span></p>
 <p><span class="math display">\[
-SCM = \sum (\hat y_i - \bar y)^2 = (y - \bar{y})^T (y - \bar{y}) = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xx} S_{xx}^{-1} S_{xy} = (n-1) \hat \beta_a^T S_{xy}
+SCM = \sum (\hat y_i - \bar y)^2 = (\hat{y} - \bar{y})^T (\hat{y} - \bar{y}) = \hat \beta_a^T X_a^T X_a \hat \beta_a
+\]</span></p>
+<p><span class="math display">\[
+= (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xx} S_{xx}^{-1} S_{xy} = (n-1) \hat \beta_a^T S_{xy}
 \]</span></p>
 <ul>
 <li>Suma de cuadrados de los residuos:</li>
@@ -521,7 +524,7 @@ H_1 : \text{Algún } \beta_i \neq 0
 <p><span class="math display">\[
 \frac{\frac{SCM/\sigma^2}{k}}{\frac{SCR/\sigma^2}{n-k-1}} \sim F_{k, n-k-1} \Rightarrow F_0 = \frac{SCM/k}{SCR/(n-k-1)} \sim F_{k, n-k-1}
 \]</span></p>
-<p>Se rechazará la hipótesis nula para valores grandes del estadístico:</p>
+<p>Si <span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_k = 0\)</span>, SCM <span class="math inline">\(\approx\)</span> 0 y el estadístico tomará valores pequeños; cuando algún <span class="math inline">\(\beta\)</span> sea distinto de cero, SCM &gt; SCR y el estadístico irá tomando cada vez valores más altos. Por tanto se rechazará la hipótesis nula para valores grandes del estadístico:</p>
 <ul>
 <li>si <span class="math inline">\(F_0 &gt; F_\alpha\)</span>: se rechaza <span class="math inline">\(H_0\)</span></li>
 <li>si <span class="math inline">\(F_0 \leq F_\alpha\)</span>: no se rechaza <span class="math inline">\(H_0\)</span></li>
@@ -576,7 +579,7 @@ H_1 : \text{Algún } \beta_i \neq 0
 <p><span class="math display">\[
 y = X \beta + u, \ dim(\beta) = k \times 1 
 \]</span></p>
-<p>Y consideremos otro modelo de regresión en el que se utilizan <em>m</em> de los <em>k</em> regresores, luego <span class="math inline">\(m &lt; k\)</span>:</p>
+<p>Y consideremos otro modelo de regresión en el que se utilizan <em>m</em> de los <em>k</em> regresores (<span class="math inline">\(m &lt; k\)</span>):</p>
 <p><span class="math display">\[
 y = X&#39; \beta&#39; + u&#39;, \ dim(\beta&#39;) = m \times 1 
 \]</span></p>

@@ -50,7 +50,7 @@ $$
 \mathrm{E}[kid\_score_i] = \beta_0
 $$
 
-Es decir, $\beta_0$ es la media de las puntuaciones de los chicos cuyas madres no han terminado el bachillerato.
+Es decir, $\beta_0$ es la **puntuación media** de los chicos cuyas madres no han terminado el bachillerato.
 
 ```{r}
 # lo comprobamos en R
@@ -67,7 +67,7 @@ $$
 \mathrm{E}[kid\_score_i] = \beta_0 + \beta_1
 $$
 
-Luego $\beta_1$ es la diferencia entre la media de las puntuaciones de los chicos cuya madre han terminado y las que no han terminado bachillerato.
+Luego $\beta_1$ es la diferencia entre las **puntuaciones medias** de los chicos cuya madre han terminado y las que no han terminado bachillerato.
 
 ```{r}
 # en R

@@ -1,13 +1,13 @@
 ---
 title: "Extensiones del modelo lineal: regresores polinómicos"
 output: 
+  pdf_document:
+    number_sections: true
+    toc: true
   html_document:
     number_sections: true
     toc: true
     toc_float: true
-  pdf_document:
-    number_sections: true
-    toc: true
 ---
 
 # Datos
@@ -285,7 +285,19 @@ summary(mk4a)
 summary(mk4)
 ```
 
-- pero coincide la varianza residual, el R2,... Se ha hecho un cambio de base, pero el modelo final es el mismo.
+- pero coincide la varianza residual, el R2,... Se ha hecho un cambio de base, pero el modelo final es el mismo. El cambio de base se puede expresar como:
+
+$$
+y = X \hat{\beta} + e = X C C^{-1} \hat{\beta} + e = X^* \hat{\beta}^* + e
+$$
+
+donde $C$ es la matriz de cambio de base:
+
+$$
+X^* = X C, \ \hat{\beta}^* = C^{-1} \hat{\beta}.
+$$
+
+Como vemos, cambian los estimadores pero no los residuos.
 
 - La predicción tiene que ser la misma:
 

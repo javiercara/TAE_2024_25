@@ -161,7 +161,7 @@ k = 2 # numero de regresores
 Vamos a calcular la varianza de los parámetros estimados, es decir $var(\hat \beta_i) = \hat s_R^2 Q_{i+1,i+1}$:
 
 ```{r}
-X = cbind(rep(1,n), d$mom_iq, d$mom_hs)
+X = cbind(rep(1,n), d$mom_iq, d$mom_hs) # tambien X = model.matrix(m)
 # Q = inv(t(X)*X)
 (Q = solve(crossprod(X))) # crossprod es otra manera de calcular t(X) %*% X
 ```

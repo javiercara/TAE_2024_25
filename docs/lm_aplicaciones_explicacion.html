@@ -289,7 +289,7 @@ kid\_score_i = \beta_0 + u_i
 <p><span class="math display">\[
 \mathrm{E}[kid\_score_i] = \beta_0
 \]</span></p>
-<p>Es decir, <span class="math inline">\(\beta_0\)</span> es la media de las puntuaciones de los chicos cuyas madres no han terminado el bachillerato.</p>
+<p>Es decir, <span class="math inline">\(\beta_0\)</span> es la <strong>puntuación media</strong> de los chicos cuyas madres no han terminado el bachillerato.</p>
 <pre class="r"><code># lo comprobamos en R
 mean(d$kid_score[d$mom_hs==&quot;no&quot;])</code></pre>
 <pre><code>## [1] 77.54839</code></pre>
@@ -302,7 +302,7 @@ kid\_score_i = \beta_0 + \beta_1 + u_i
 <p><span class="math display">\[
 \mathrm{E}[kid\_score_i] = \beta_0 + \beta_1
 \]</span></p>
-<p>Luego <span class="math inline">\(\beta_1\)</span> es la diferencia entre la media de las puntuaciones de los chicos cuya madre han terminado y las que no han terminado bachillerato.</p>
+<p>Luego <span class="math inline">\(\beta_1\)</span> es la diferencia entre las <strong>puntuaciones medias</strong> de los chicos cuya madre han terminado y las que no han terminado bachillerato.</p>
 <pre class="r"><code># en R
 mean(d$kid_score[d$mom_hs==&quot;si&quot;]) - mean(d$kid_score[d$mom_hs==&quot;no&quot;])</code></pre>
 <pre><code>## [1] 11.77126</code></pre>

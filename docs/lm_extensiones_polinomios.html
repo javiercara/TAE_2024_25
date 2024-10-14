@@ -625,8 +625,18 @@ summary(mk4a)</code></pre>
 ## Multiple R-squared:  0.1094, Adjusted R-squared:  0.1082 
 ## F-statistic: 89.55 on 4 and 2916 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
-<li><p>pero coincide la varianza residual, el R2,… Se ha hecho un cambio de base, pero el modelo final es el mismo.</p></li>
-<li><p>La predicción tiene que ser la misma:</p></li>
+<li>pero coincide la varianza residual, el R2,… Se ha hecho un cambio de base, pero el modelo final es el mismo. El cambio de base se puede expresar como:</li>
+</ul>
+<p><span class="math display">\[
+y = X \hat{\beta} + e = X C C^{-1} \hat{\beta} + e = X^* \hat{\beta}^* + e
+\]</span></p>
+<p>donde <span class="math inline">\(C\)</span> es la matriz de cambio de base:</p>
+<p><span class="math display">\[
+X^* = X C, \ \hat{\beta}^* = C^{-1} \hat{\beta}.
+\]</span></p>
+<p>Como vemos, cambian los estimadores pero no los residuos.</p>
+<ul>
+<li>La predicción tiene que ser la misma:</li>
 </ul>
 <pre class="r"><code>predict(mk4, newdata = data.frame(age = 22), interval = &quot;confidence&quot;)</code></pre>
 <pre><code>##        fit      lwr      upr

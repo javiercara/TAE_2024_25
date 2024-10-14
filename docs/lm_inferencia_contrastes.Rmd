@@ -268,11 +268,15 @@ $$
 Es decir
 
 $$
-y - \bar{y} = X_a \hat \beta_a
+\hat{y} - \bar{y} = X_a \hat \beta_a
 $$
 
 $$
-SCM = \sum (\hat y_i - \bar y)^2 = (y - \bar{y})^T (y - \bar{y}) = (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xx} S_{xx}^{-1} S_{xy} = (n-1) \hat \beta_a^T S_{xy}
+SCM = \sum (\hat y_i - \bar y)^2 = (\hat{y} - \bar{y})^T (\hat{y} - \bar{y}) = \hat \beta_a^T X_a^T X_a \hat \beta_a
+$$
+
+$$
+= (n-1) \hat \beta_a^T S_{xx} \hat \beta_a = (n-1) \hat \beta_a^T S_{xx} S_{xx}^{-1} S_{xy} = (n-1) \hat \beta_a^T S_{xy}
 $$
 
 - Suma de cuadrados de los residuos: 
@@ -302,7 +306,7 @@ $$
 \frac{\frac{SCM/\sigma^2}{k}}{\frac{SCR/\sigma^2}{n-k-1}} \sim F_{k, n-k-1} \Rightarrow F_0 = \frac{SCM/k}{SCR/(n-k-1)} \sim F_{k, n-k-1}
 $$
 
-Se rechazará la hipótesis nula para valores grandes del estadístico:
+Si $\beta_1 = \beta_2 = \cdots = \beta_k = 0$, SCM $\approx$ 0 y el estadístico tomará valores pequeños; cuando algún $\beta$ sea distinto de cero, SCM > SCR y el estadístico irá tomando cada vez valores más altos. Por tanto se rechazará la hipótesis nula para valores grandes del estadístico:
 
 - si $F_0 > F_\alpha$: se rechaza $H_0$
 - si $F_0 \leq F_\alpha$: no se rechaza $H_0$
@@ -337,7 +341,7 @@ $$
 y = X \beta + u, \ dim(\beta) = k \times 1 
 $$
 
-Y consideremos otro modelo de regresión en el que se utilizan *m* de los *k* regresores, luego $m < k$:
+Y consideremos otro modelo de regresión en el que se utilizan *m* de los *k* regresores ($m < k$):
 
 $$
 y = X' \beta' + u', \ dim(\beta') = m \times 1 
