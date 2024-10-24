@@ -577,7 +577,7 @@ Var[\hat \beta_j] = \frac{\sigma^2}{\sum_{i=1}^n P_j^2(x_i)}
 <div id="propiedades" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Propiedades</h2>
 <ul>
-<li>Los parámetros del modelo ortogonal no coincide con los del modelo polinómico no ortogonal:</li>
+<li>Los parámetros del modelo ortogonal no coinciden con los del modelo polinómico no ortogonal:</li>
 </ul>
 <pre class="r"><code>mk4a = lm(wage ~ poly(age, degree = 4), data = d)
 summary(mk4a)</code></pre>
@@ -625,7 +625,8 @@ summary(mk4a)</code></pre>
 ## Multiple R-squared:  0.1094, Adjusted R-squared:  0.1082 
 ## F-statistic: 89.55 on 4 and 2916 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
-<li>pero coincide la varianza residual, el R2,… Se ha hecho un cambio de base, pero el modelo final es el mismo. El cambio de base se puede expresar como:</li>
+<li><p>pero coincide la varianza residual, el R2,…</p></li>
+<li><p>En el fondo, se ha hecho un cambio de base, pero el modelo final es el mismo. El cambio de base se puede expresar como:</p></li>
 </ul>
 <p><span class="math display">\[
 y = X \hat{\beta} + e = X C C^{-1} \hat{\beta} + e = X^* \hat{\beta}^* + e
@@ -636,8 +637,16 @@ X^* = X C, \ \hat{\beta}^* = C^{-1} \hat{\beta}.
 \]</span></p>
 <p>Como vemos, cambian los estimadores pero no los residuos.</p>
 <ul>
-<li>La predicción tiene que ser la misma:</li>
+<li><p>La predicción tiene que ser la misma:</p>
+<ul>
+<li>Con polinomios “nomales”: <span class="math inline">\(\hat{y}_p = x_p \beta\)</span></li>
+<li>Con polinomios ortogonales: <span class="math inline">\(\hat{y}_p^* = x_p^* \beta^*\)</span></li>
+</ul></li>
 </ul>
+<p>Teniendo en cuenta la matriz de cambio de base:</p>
+<p><span class="math display">\[
+\hat{y}_p^* = x_p^* \beta^* = (x_p^*C) \cdot (C^{-1} \beta^*) = x_p \beta = \hat{y}_p
+\]</span></p>
 <pre class="r"><code>predict(mk4, newdata = data.frame(age = 22), interval = &quot;confidence&quot;)</code></pre>
 <pre><code>##        fit      lwr      upr
 ## 1 75.79416 72.15342 79.43489</code></pre>

@@ -26,7 +26,7 @@ str(d)
 - Price: precio medio de la cena en dólares.
 - InMichelin: vale 1 si el restaurante está en la Guía Michel y 0 si no está en dicha guía.
 
-En este caso queremos analizar qué variables influyen en que un restaurante sea incluido en la Guía Michelín. Podríamos pensar en un modelo de regresión lineal:
+En este caso queremos analizar qué variables influyen en que un restaurante sea incluido en la Guía Michelín. Por tanto, la variable respuesta es *InMichelin*, es decir, una variable $y_i = \{0,1\}$. Podríamos pensar en un modelo de regresión lineal:
 
 $$
 InMichelin_i = \beta_0 + \beta_1 Food_i + u_i, \quad u_i \sim N(0,\sigma^2)
@@ -44,73 +44,61 @@ Pero este modelo no es válido porque, entre otras razones, los residuos no tien
 plot(fitted.values(m), residuals(m))
 ```
 
-# Modelo
+# Modelo con un regresor
 
-En este tema se va a utilizar el **modelo de regresión logística** para trabajar con variables respuesta binarias. La idea es seguir utilizando un modelo que relacione la variable respuesta y los regresores:
-
-$$
-y_i = f(x_{i}) + u_i
-$$
-
-Por ejemplo, en regresión lineal se tenía que:
+La alternativa es utilizar el **modelo de regresión logística**, que nos permite trabajar con variables respuesta binarias, $y_i = \{1,0\}$ (si la variable es un factor con dos niveles, se toma uno de los niveles como valor 1 y el otro como valor 0). La idea es seguir utilizando un modelo que relacione la variable respuesta y los regresores:
 
 $$
-f(x_{i}) = E[y_i] = \beta_0 + \beta_1 x_{i}
+y_i = f(x_{i})
 $$
 
-ya que $u_i \sim N(0,\sigma^2)$.
+pero en el modelo de regresión logística se trabaja con probabilidades:
 
-En el modelo de regresión logística la respuesta es binaria, $y_i = \{0,1\}$. Para conseguir el modelo $y_i = f(x_{i}) + u_i$ se trabaja con probabilidades. Se definen las siguientes probabilidades:
+$$
+P(y_i = \{1,0\}) = f(x_{i})
+$$
+
+En concreto se definen las siguientes probabilidades:
 
 - $P(y_i = 1) = \pi_i$
-- $P(y_i = 0) = 1 - \pi_i$.
+- $P(y_i = 0) = 1 - \pi_i$,
 
 donde:
 
 $$
-\pi_i = \frac{exp(\beta_0 + \beta_1 x_{i})}{1 + exp(\beta_0 + \beta_1 x_{i})}
+\pi_i = \frac{exp(\beta_0 + \beta_1 x_{i})}{1 + exp(\beta_0 + \beta_1 x_{i})} = \frac{1}{1 + exp(-\beta_0 - \beta_1 x_{i})}
 $$
 
-Como $\pi_i$ es una probabilidad debe tomar valores entre 0 y 1. Existen varias funciones que cumplen esa condición, entre ellas la función anterior, que se conoce como **función logística**. Algunos ejemplos son:
+Como $\pi_i$ es una probabilidad debe tomar valores entre 0 y 1, y esa función lo cumple. Efectivamente:
+
+$$
+exp(-\beta_0 - \beta_1 x_{i}) > 0 \Rightarrow
+$$
+
+$$
+1 + exp(-\beta_0 - \beta_1 x_{i}) > 1 \Rightarrow
+$$
+
+$$
+\frac{1}{1 + exp(-\beta_0 - \beta_1 x_{i})} < 1
+$$
+
+A esta función se le conoce como **función logística**. Algunos ejemplos de esta función son:
 
 ```{r}
-# ejemplo de función logística
+# ejemplo de función logística: beta0 = -6, beta1 = 1
 x = seq(0,14,0.5)
 logistica1 = 1/(1+exp(-6 + 1*x))
 plot(x,logistica1, type = "b")
 ```
 
 ```{r}
-# ejemplo de función logística
+# ejemplo de función logística: beta0 = 6, beta1 = -1
 logistica2 = 1/(1+exp(6 - 1*x))
 plot(x,logistica2, type = "b")
 ```
 
-La idea era tener un modelo del tipo:
-
-$$
-y_i = f(x_{i}) + u_i
-$$
-
-Si mantenemos que $E[u_i] = 0$ (aunque ya no se va a cumplir que $u_i \sim$ Normal):
-
-$$
-E[y_i] = f(x_{i})
-$$
-
-Como $y_i$ toma valores 1 y 0 con probabilidades $\pi_i$ y $1-\pi_i$ se tiene que:
-
-$$
-E[y_i] = 1*\pi_i + 0*(1-\pi_i) = \pi_i
-$$
-
-Es decir, en el modelo de regresión logística:
-
-$$
-f(x_{i}) = \frac{exp(\beta_0 + \beta_1 x_{i})}{1 + exp(\beta_0 + \beta_1 x_{i})}
-$$
-
-Este modelo también se conoce como **modelo logit**. La función logit se define como:
+Este modelo también se conoce como **modelo logit**, ya que la función logit se define como:
 
 $$
 logit(x) = log \left( \frac{x}{1-x} \right)
@@ -122,7 +110,6 @@ $$
 logit(\pi_i) = log \left( \frac{\pi_i}{1-\pi_i} \right) =  \beta_0 + \beta_1 x_i
 $$
 
-
 # Estimación de los parámetros del modelo: máxima verosimilitud
 
 Para estimar los parámetros del modelo ($\beta_0$ y $\beta_1$) se utiliza el método de máxima verosimilitud, que consiste en:
@@ -132,7 +119,7 @@ Para estimar los parámetros del modelo ($\beta_0$ y $\beta_1$) se utiliza el m�
 
 ## La función de verosimilitud
 
-La función de verosimilitud es la probabilidad de obtener la muestra dada. Para un sola observación:
+La función de verosimilitud es la probabilidad de obtener la muestra dada. En primer lugar reescribimos el modelo como:
 
 $$
 P(Y_i = y_i) = \pi_i^{y_i} (1 - \pi_i)^{1-y_i}, \quad y_i = 0,1, \quad i = 1,2,\ldots,n
@@ -489,7 +476,7 @@ $$
 x_{k+1} = x_k - \alpha H^{-1}_k G_k
 $$
 
-El valor de $\alpha$ se tiene que calcular en cada caso particular, para lo que se utilizan [algoritmos de búsqueda lineal](https://en.wikipedia.org/wiki/Line_search). El cálculo de valor óptimo de $\alpha$ queda fuera del alcance y de los objeticos de la asignatura. Nosotros vamos a utilizar $\alpha = 0.1$, que da resultados aceptables para las datos analizados.
+El valor de $\alpha$ se tiene que calcular en cada caso particular, para lo que se utilizan [algoritmos de búsqueda lineal](https://en.wikipedia.org/wiki/Line_search). El cálculo de valor óptimo de $\alpha$ queda fuera del alcance y de los objetivos de la asignatura. Nosotros vamos a utilizar $\alpha = 0.1$, que da resultados aceptables para las datos analizados.
 
 Por último, como las variables de la función log-verosimilitud son $\beta = [\beta_0 \ \beta_1]^T$, el algoritmo de Newton se escribe en nuestro caso como:
 

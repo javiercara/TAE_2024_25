@@ -277,7 +277,7 @@ $$
 
 ## Propiedades
 
-- Los parámetros del modelo ortogonal no coincide con los del modelo polinómico no ortogonal:
+- Los parámetros del modelo ortogonal no coinciden con los del modelo polinómico no ortogonal:
 
 ```{r}
 mk4a = lm(wage ~ poly(age, degree = 4), data = d)
@@ -285,7 +285,9 @@ summary(mk4a)
 summary(mk4)
 ```
 
-- pero coincide la varianza residual, el R2,... Se ha hecho un cambio de base, pero el modelo final es el mismo. El cambio de base se puede expresar como:
+- pero coincide la varianza residual, el R2,... 
+
+- En el fondo, se ha hecho un cambio de base, pero el modelo final es el mismo. El cambio de base se puede expresar como:
 
 $$
 y = X \hat{\beta} + e = X C C^{-1} \hat{\beta} + e = X^* \hat{\beta}^* + e
@@ -300,6 +302,15 @@ $$
 Como vemos, cambian los estimadores pero no los residuos.
 
 - La predicción tiene que ser la misma:
+
+  * Con polinomios "nomales": $\hat{y}_p = x_p \beta$
+  * Con polinomios ortogonales: $\hat{y}_p^* = x_p^* \beta^*$
+  
+Teniendo en cuenta la matriz de cambio de base:
+
+$$
+\hat{y}_p^* = x_p^* \beta^* = (x_p^*C) \cdot (C^{-1} \beta^*) = x_p \beta = \hat{y}_p
+$$
 
 ```{r}
 predict(mk4, newdata = data.frame(age = 22), interval = "confidence")

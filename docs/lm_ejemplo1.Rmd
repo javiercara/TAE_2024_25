@@ -52,7 +52,7 @@ luego si está relacionada.
 cor(d[,-1])
 ```
 
-Como vemos, la correlación entre radio y newspaper es 0.35, lo que indica que en los mercados donde se invierte en *radio* también se invierte en *newspaper*. Luego parte de la información contenida en *newspaper* ya está contenida en *radio*, luego no aporta información significativa si inclimos las dos variables en el mismo modelo:
+Como vemos, la correlación entre radio y newspaper es 0.35, lo que indica que en los mercados donde se invierte en *radio* también se invierte en *newspaper*. Luego parte de la información contenida en *newspaper* ya está contenida en *radio*, luego no aporta información significativa si incluimos las dos variables en el mismo modelo:
 
 ```{r}
 m1b = lm(sales ~ radio + newspaper, data = d)
