@@ -128,7 +128,7 @@ donde $D_1$ es la desviación del modelo con parámetros $\beta$ y $D_A$ es la d
 - Si $G \geq \chi^2_{\alpha}$ se rechaza la hipótesis nula.
 - Si $G < \chi^2_{\alpha}$ no se rechaza la hipótesis nula.
 
-Es decir, valores grandes del estadístico significa que la verosimilitud de ambos modelos es muy diferente, luego $\beta_B \neq 0$. Para valores pequeños de G, ambos modelos son muy parecidos, luego los regresores $\beta_B$ no aportan nada al modelo, es decir, $\beta_B = 0$.
+Es decir, valores grandes del estadístico significa que la verosimilitud de ambos modelos es muy diferente, luego $\beta_B \neq 0$ por lo que se tiene que rechazar $H_0$. Para valores pequeños de G, ambos modelos son muy parecidos, luego los regresores $\beta_B$ no aportan nada al modelo, es decir, $\beta_B = 0$, no se rechaza $H_0$.
 
 Por ejemplo, queremos resolver el contraste con hipótesis nula $\beta_1 = \beta_2 = 0$:
 

@@ -289,7 +289,8 @@ P(Decision_i = 1) = \frac{exp(\beta_0)}{1 + exp(\beta_0)}
 <p><span class="math display">\[
 P(Decision_i = 1) = \frac{exp(\beta_0+\beta_1)}{1 + exp(\beta_0+\beta_1)}
 \]</span></p>
-<p>Por tanto, si <span class="math inline">\(\beta_1 = 0\)</span>, entonces P(Decision = 1 | Homeowner = Y) = P(Decision = 1 | Homeowner = N). Si <span class="math inline">\(\beta_1 &gt; 0\)</span>, entonces:</p>
+<p>Por tanto, si <span class="math inline">\(\beta_1 = 0\)</span>, entonces P(Decision = 1 | Homeowner = Y) = P(Decision = 1 | Homeowner = N).</p>
+<p>Si <span class="math inline">\(\beta_1 &gt; 0\)</span>, entonces:</p>
 <p><span class="math display">\[
 \beta_0 &lt; \beta_0 + \beta_1 \\
 -\beta_0 &gt; -\beta_0 - \beta_1 \\
@@ -352,7 +353,7 @@ summary(m2)</code></pre>
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>El modelo que se estima ahora es:</p>
 <p><span class="math display">\[
-P(Decision_i = 1) = \frac{exp(\beta_0^* + \beta_1^* HomeownerY_i)}{1 + exp(\beta_0^* + \beta_1^* HomeownerY_i)}
+P(Decision_i = 1) = \frac{exp(\beta_0^* + \beta_1^* HomeownerN_i)}{1 + exp(\beta_0^* + \beta_1^* HomeownerN_i)}
 \]</span></p>
 <p>Que equivale a dos modelos:</p>
 <ul>
@@ -367,10 +368,7 @@ P(Decision_i = 1) = \frac{exp(\beta_0^*)}{1 + exp(\beta_0^*)}
 <p><span class="math display">\[
 P(Decision_i = 1) = \frac{exp(\beta_0^*+\beta_1^*)}{1 + exp(\beta_0^*+\beta_1^*)}
 \]</span></p>
-<p>La probabilidad de que la Decision = 1 cuando el cliente es propietario de una casa tiene que ser igual en ambos modelos:</p>
-<p><span class="math display">\[
-P(Decision_i = 1 | HomeownerY = 1 ) = P(Decision_i = 1 | HomeownerN = 0 )
-\]</span></p>
+<p>La probabilidad de que la Decision = “Approve” cuando el cliente es propietario de una casa tiene que ser igual en ambos modelos:</p>
 <p><span class="math display">\[
 \frac{exp(\beta_0 + \beta_1)}{1 + exp(\beta_0 + \beta_1)} = \frac{exp(\beta_0^*)}{1 + exp(\beta_0^*)}
 \]</span></p>
@@ -378,7 +376,7 @@ P(Decision_i = 1 | HomeownerY = 1 ) = P(Decision_i = 1 | HomeownerN = 0 )
 <p><span class="math display">\[
 \beta_0 + \beta_1 = \beta_0^* \Rightarrow -2.3514 + 3.6041 = 1.2528
 \]</span></p>
-<p>Por otro lado, la probabilidad de que la Decision = 1 cuando el cliente NO es propietario de una casa tiene que ser igual en ambos modelos:</p>
+<p>Por otro lado, la probabilidad de que la Decision = “Approve” cuando el cliente NO es propietario de una casa tiene que ser igual en ambos modelos:</p>
 <p><span class="math display">\[
 P(Decision_i = 1 | HomeownerY = 0 ) = P(Decision_i = 1 | HomeownerN = 1 )
 \]</span></p>

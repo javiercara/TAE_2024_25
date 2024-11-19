@@ -93,6 +93,22 @@ $$
 se tiene que
 
 $$
+L_p  \leq x_p^T \beta \leq U_p
+$$
+
+$$
+exp(L_p)  \leq exp(x_p^T \beta) \leq exp(U_p) 
+$$
+
+Sumando uno a cada término:
+
+$$
+1 + exp(L_p)  \leq 1 + exp(x_p^T \beta) \leq 1 + exp(U_p)
+$$
+
+y dividiendo ambas expresiones término a término se obtiene:
+
+$$
 \frac{exp(L_p)}{1+exp(L_p)} \leq \pi_p \leq \frac{exp(U_p)}{1+exp(U_p)}
 $$
 
@@ -164,7 +180,7 @@ pred$fit + qnorm(1-alfa/2)*pred$se.fit
 
 Sin embargo, estos valores no coinciden con los calculados anteriormente. Es más, obtenemos un valor de probabilidad por encima de 1, lo que no es posible. Esto es debido a que las probabilidades no tienen distribución normal, y en el cálculo de estos intervalos estamos asumiento que las probabilidades estimadas tienen esa distribución. 
 
-Lo que hemos encontrado de manera teórica es que $x_p^T \hat \beta$ tiene distribución normal. Ese término se conoce como *link*. En R se puede predecir el *link* en lugar de probabilidades:
+Lo que hemos encontrado de manera teórica es que $x_p^T \hat \beta$ tiene distribución normal, no que $\pi_p$ tiene distribución normal. El término $x_p^T \hat \beta$ se conoce como *link*. En R se puede predecir el *link* en lugar de probabilidades:
 
 ```{r}
 (pred = predict(m1, newdata = xp_df, type = "link", se.fit = T))
@@ -183,8 +199,9 @@ exp(Up)/(1+exp(Up))
 
 Hemos hecho la predicción de $\hat \pi_p$, probabilidades, pero queremos predecir si un Restaurante con Food = 22, Decor = 19, Service = 24, Price = 55 va a estar en la Guía Michelín o no. Para eso, adoptamos el criterio: 
 
-- si  $\hat P(Y_p = 1) = \hat \pi_p > 0.5$, entonces $Y_p = 1$, o lo que es lo mismo, el restaurante está en la Guía Michelin. 
-- si  $\hat P(Y_p = 1) = \hat \pi_p < 0.5$, entonces $Y_p = 0$, luego el restaurante no está en la Guía Michelin. 
+- si  $\hat P(Y_p = 1) = \hat \pi_p > 0.5$, entonces consideramos que el restaurante está en la Guía Michelin. 
+- si  $\hat P(Y_p = 1) = \hat \pi_p < 0.5$, entonces consideramos que el restaurante no está en la Guía Michelin. 
 
 En este caso, como $\hat{\pi}_{p} = `r round(pi_p,2)`$, la predicción es que ese restaurante va a estar incluido en la Guía Michelín. Además, el intervalo de confianza está muy por encima de 0.5, luego tenemos mucha confianza en esa decisión.
 
+El límite de 0.5 que hemos utilizado es totalmente arbitrario y se puede modificar según el criterio del autor del análisis.

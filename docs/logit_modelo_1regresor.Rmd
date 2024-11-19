@@ -46,7 +46,7 @@ plot(fitted.values(m), residuals(m))
 
 # Modelo con un regresor
 
-La alternativa es utilizar el **modelo de regresión logística**, que nos permite trabajar con variables respuesta binarias, $y_i = \{1,0\}$ (si la variable es un factor con dos niveles, se toma uno de los niveles como valor 1 y el otro como valor 0). La idea es seguir utilizando un modelo que relacione la variable respuesta y los regresores:
+La alternativa es utilizar el **modelo de regresión logística**, que nos permite trabajar con variables respuesta binarias, $y_i = \{0,1\}$ (si la variable es un factor con dos niveles, se toma uno de los niveles como valor 1 y el otro como valor 0). La idea es seguir utilizando un modelo que relacione la variable respuesta y los regresores:
 
 $$
 y_i = f(x_{i})
@@ -55,7 +55,7 @@ $$
 pero en el modelo de regresión logística se trabaja con probabilidades:
 
 $$
-P(y_i = \{1,0\}) = f(x_{i})
+P(y_i = \{0,1\}) = f(x_{i})
 $$
 
 En concreto se definen las siguientes probabilidades:
@@ -115,7 +115,7 @@ $$
 Para estimar los parámetros del modelo ($\beta_0$ y $\beta_1$) se utiliza el método de máxima verosimilitud, que consiste en:
 
 - Definir la función logaritmo de la verosimilitud;
-- La estimación de los parámetros son aquellos que maximizan la funcion log-verosimilitud.
+- Los estimadores de los parámetros son aquellos que maximizan la funcion log-verosimilitud.
 
 ## La función de verosimilitud
 
@@ -424,7 +424,11 @@ $$
 p_2(x) = f(x_1) + f'(x_1)(x-x_1) + \frac{1}{2}f''(x_1)(x-x_1)^2
 $$
 
-y $e(x)$ es el error cometido en dicha aproximación. Derivamos para encontrar el máximo del polinomio:
+y $e(x)$ es el error cometido en dicha aproximación. 
+
+![](imagenes/newton1.png)
+
+Derivamos para encontrar el máximo del polinomio $p_2(x)$:
 
 $$
 \frac{\partial p_2(x)}{\partial x} = f'(x_1) + f''(x_1)(x-x_1) = 0
@@ -551,7 +555,13 @@ m2 = glm(InMichelin ~ Food, data = d, family = binomial)
 summary(m2)
 ```
 
-Internamente la función glm() utiliza el algoritmo de Newton.
+Internamente la función glm() utiliza el algoritmo de Newton. 
+
+El modelo que estamos estimando es:
+
+$$
+P (Y_i = 1) = \frac{exp(\beta_0 + \beta_1 x_i)}{1 + exp(\beta_0 + \beta_1 x_i)}
+$$
 
 ### Con variable respuesta como factor
 

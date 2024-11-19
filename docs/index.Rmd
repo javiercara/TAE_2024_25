@@ -66,7 +66,7 @@ output:
     a. [Cálculo de predicciones](logit_aplicaciones_prediccion.html) [(pdf)](logit_aplicaciones_prediccion.pdf)
     b. [Análisis de las relaciones entre variables](logit_aplicaciones_explicacion.html) [(pdf)](logit_aplicaciones_explicacion.pdf)
 4. Bondad de ajuste
-    a. [Bondad del ajuste](logit_bondadajuste.html)[(pdf)](logit_bondadajuste.pdf)
+    a. [Bondad del ajuste](logit_bondadajuste.html) [(pdf)](logit_bondadajuste.pdf)
 5. Residuos
     a. [Análisis de los residuos del modelo](logit_diagnosis.html) [(pdf)](logit_diagnosis.pdf)
 6. Apéndices

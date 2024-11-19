@@ -58,7 +58,9 @@ $$
 P(Decision_i = 1) = \frac{exp(\beta_0+\beta_1)}{1 + exp(\beta_0+\beta_1)}
 $$
 
-Por tanto, si $\beta_1 = 0$, entonces P(Decision = 1 | Homeowner = Y) = P(Decision = 1 | Homeowner = N). Si $\beta_1 > 0$, entonces:
+Por tanto, si $\beta_1 = 0$, entonces P(Decision = 1 | Homeowner = Y) = P(Decision = 1 | Homeowner = N). 
+
+Si $\beta_1 > 0$, entonces:
 
 $$
 \beta_0 < \beta_0 + \beta_1 \\
@@ -104,7 +106,7 @@ summary(m2)
 El modelo que se estima ahora es:
 
 $$
-P(Decision_i = 1) = \frac{exp(\beta_0^* + \beta_1^* HomeownerY_i)}{1 + exp(\beta_0^* + \beta_1^* HomeownerY_i)}
+P(Decision_i = 1) = \frac{exp(\beta_0^* + \beta_1^* HomeownerN_i)}{1 + exp(\beta_0^* + \beta_1^* HomeownerN_i)}
 $$
 
 Que equivale a dos modelos:
@@ -121,11 +123,7 @@ $$
 P(Decision_i = 1) = \frac{exp(\beta_0^*+\beta_1^*)}{1 + exp(\beta_0^*+\beta_1^*)}
 $$
 
-La probabilidad de que la Decision = 1 cuando el cliente es propietario de una casa tiene que ser igual en ambos modelos:
-
-$$
-P(Decision_i = 1 | HomeownerY = 1 ) = P(Decision_i = 1 | HomeownerN = 0 )
-$$
+La probabilidad de que la Decision = "Approve" cuando el cliente es propietario de una casa tiene que ser igual en ambos modelos:
 
 $$
 \frac{exp(\beta_0 + \beta_1)}{1 + exp(\beta_0 + \beta_1)} = \frac{exp(\beta_0^*)}{1 + exp(\beta_0^*)}
@@ -137,7 +135,7 @@ $$
 \beta_0 + \beta_1 = \beta_0^* \Rightarrow -2.3514 + 3.6041 = 1.2528
 $$
 
-Por otro lado, la probabilidad de que la Decision = 1 cuando el cliente NO es propietario de una casa tiene que ser igual en ambos modelos:
+Por otro lado, la probabilidad de que la Decision = "Approve" cuando el cliente NO es propietario de una casa tiene que ser igual en ambos modelos:
 
 $$
 P(Decision_i = 1 | HomeownerY = 0 ) = P(Decision_i = 1 | HomeownerN = 1 )

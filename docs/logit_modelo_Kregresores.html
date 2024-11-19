@@ -255,14 +255,13 @@ str(d)</code></pre>
 ##  $ Price          : int  50 43 35 52 24 36 51 61 179 42 ...</code></pre>
 <p>El objetivo es utilizar un modelo que relacione una serie de regresores con una variable respuesta binaria:</p>
 <p><span class="math display">\[
-y_i = f(x_{1i}, x_{2i}, \cdots, x_{ki}) + u_i
+P(y_i = \{0,1\}) = f(x_{1i}, x_{2i}, \cdots, x_{ki})
 \]</span></p>
-<p>donde en este caso <span class="math inline">\(y_i = \{0,1\}\)</span>. Para ello se definen las siguientes probabilidades:</p>
+<p>donde:</p>
 <ul>
 <li><span class="math inline">\(P(y_i = 1) = \pi_i\)</span></li>
 <li><span class="math inline">\(P(y_i = 0) = 1 - \pi_i\)</span>.</li>
 </ul>
-<p>donde:</p>
 <p><span class="math display">\[
 \pi_i = \frac{exp(\beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \cdots + \beta_k x_{ki})}{1 + exp(\beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \cdots + \beta_k x_{ki})}
 \]</span></p>
@@ -281,24 +280,13 @@ y_i = f(x_{1i}, x_{2i}, \cdots, x_{ki}) + u_i
 <p><span class="math display">\[
 \pi_i = \frac{exp(x_i^T \beta)}{1 + exp(x_i^T \beta)}
 \]</span></p>
-<p>Como se admite que <span class="math inline">\(E[u_i] = 0\)</span>:</p>
-<p><span class="math display">\[
-E[y_i] = f(x_{1i}, x_{2i}, \cdots, x_{ki})
-\]</span></p>
-<p>Como <span class="math inline">\(y_i\)</span> toma valores 1 y 0 con probabilidades <span class="math inline">\(\pi_i\)</span> y <span class="math inline">\(1-\pi_i\)</span> se tiene que:</p>
-<p><span class="math display">\[
-E[y_i] = 1 \cdot \pi_i + 0 \cdot (1-\pi_i) = \pi_i
-\]</span></p>
-<p><span class="math display">\[
-f(x_{1i}, x_{2i}, \cdots, x_{ki}) = \frac{exp(x_i^T \beta)}{1 + exp(x_i^T \beta)}
-\]</span></p>
 </div>
 <div id="estimación-de-los-parámetros-del-modelo-máxima-verosimilitud" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Estimación de los parámetros del modelo: máxima verosimilitud</h1>
 <p>Para estimar los parámetros del modelo (<span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>) se utiliza el método de máxima verosimilitud, que consiste en:</p>
 <ul>
 <li>Definir la función logaritmo de la verosimilitud;</li>
-<li>La estimación de los parámetros son aquellos que maximizan la funcion log-verosimilitud.</li>
+<li>Los estimadores de los parámetros son aquellos que maximizan la funcion log-verosimilitud.</li>
 </ul>
 <div id="la-función-de-verosimilitud" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> La función de verosimilitud</h2>
@@ -624,6 +612,10 @@ summary(m2)</code></pre>
 ## AIC: 158.4
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
+<p>El modelo que estamos estimando es:</p>
+<p><span class="math display">\[
+P (Y_i = 1) = \frac{exp(x_i^T \beta)}{1 + exp(x_i^T \beta)}
+\]</span></p>
 </div>
 </div>
 

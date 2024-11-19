@@ -368,7 +368,7 @@ G = D_A - D_1 \sim \chi^2_{k-m}
 <li>Si <span class="math inline">\(G \geq \chi^2_{\alpha}\)</span> se rechaza la hipótesis nula.</li>
 <li>Si <span class="math inline">\(G &lt; \chi^2_{\alpha}\)</span> no se rechaza la hipótesis nula.</li>
 </ul>
-<p>Es decir, valores grandes del estadístico significa que la verosimilitud de ambos modelos es muy diferente, luego <span class="math inline">\(\beta_B \neq 0\)</span>. Para valores pequeños de G, ambos modelos son muy parecidos, luego los regresores <span class="math inline">\(\beta_B\)</span> no aportan nada al modelo, es decir, <span class="math inline">\(\beta_B = 0\)</span>.</p>
+<p>Es decir, valores grandes del estadístico significa que la verosimilitud de ambos modelos es muy diferente, luego <span class="math inline">\(\beta_B \neq 0\)</span> por lo que se tiene que rechazar <span class="math inline">\(H_0\)</span>. Para valores pequeños de G, ambos modelos son muy parecidos, luego los regresores <span class="math inline">\(\beta_B\)</span> no aportan nada al modelo, es decir, <span class="math inline">\(\beta_B = 0\)</span>, no se rechaza <span class="math inline">\(H_0\)</span>.</p>
 <p>Por ejemplo, queremos resolver el contraste con hipótesis nula <span class="math inline">\(\beta_1 = \beta_2 = 0\)</span>:</p>
 <pre class="r"><code>mA = glm(InMichelin ~ Service + Price, data = d, family = binomial)
 (DA = abs(2*logit_logL(coef(mA),d$InMichelin,model.matrix(mA))) )</code></pre>
